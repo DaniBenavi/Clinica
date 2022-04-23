@@ -75,7 +75,8 @@ if (isset($_GET['edit_id'])) {
                         <label for="dui">Dui</label>
                         <input id="dui" value="<?php echo $dui; ?>" class="form-control" type="text" name="dui">
                     </div><br>
-                    <button class="btn btn-primary" name="btn-update" type="submit">Actualizar</button>
+                    <button class="btn btn-success" name="btn-update" type="submit">Actualizar</button>
+                    <a href="admin_pacientes.php"><button type="button" class="btn btn-danger">Cancelar</button><br></a>
                 </form>
             </div>
 

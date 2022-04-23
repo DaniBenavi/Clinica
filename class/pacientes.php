@@ -7,14 +7,19 @@ class crud
         $this->db = $conn;
     }
     //Muestra los datos en la tabla
+    
     public function dataview($query)
     {
         $stmt = $this->db->prepare($query);
         $stmt->execute() > 0;
         
+        echo '<a href="new_paciente.php"><button type="button" class="btn btn-success btn-sm">Agregar Paciente</button><br></a><br>';
+    
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
+
             <tr>
+
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['nombre']; ?></td>
                 <td><?php echo $row['apellido']; ?></td>
@@ -26,11 +31,12 @@ class crud
 
                 </td>
                 <td align="center">
-                    
-                    <a href="delete_pacientes.php?delete_id=<?php echo $row['id'] ?>"><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>
+
+                    <a href="delete_pacientes.php?delete_id=<?php echo $row['id'] ?>" >
+                    <button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>
                 </td>
             </tr>
-
+            
 <?php
 
         }
@@ -54,16 +60,16 @@ class crud
             return false;
         }
     }
-    public function delete($id,$nombre, $apellido, $direccion, $telefono, $dui)
+    public function delete($id/*, $nombre, $apellido, $direccion, $telefono, $dui*/)
     {
         try {
             $stmt = $this->db->prepare("DELETE from pacientes WHERE id=:id");
-            $stmt->bindparam(":nombre", $nombre);
+            $stmt->bindparam(":id", $id);
+            /*$stmt->bindparam(":nombre", $nombre);
             $stmt->bindparam(":apellido", $apellido);
             $stmt->bindparam(":direccion", $direccion);
             $stmt->bindparam(":telefono", $telefono);
-            $stmt->bindparam(":dui", $dui);
-            $stmt->bindparam(":id", $id);
+            $stmt->bindparam(":dui", $dui);*/
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -78,4 +84,6 @@ class crud
         $editRow = $stmt->fetch(PDO::FETCH_ASSOC);
         return $editRow;
     }
+
+    
 }

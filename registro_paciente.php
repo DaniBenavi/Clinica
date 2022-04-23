@@ -47,10 +47,8 @@
                         $result = $query->execute();
 
                         if ($result) {
-                            echo '
-                <div class="alert alert-success" role="alert">
-                ¡Tu registro fue exitoso!
-                </div>';
+                            echo '<div class="alert alert-success" role="alert"> ¡Tu registro fue exitoso!</div>
+                            <a href="admin_pacientes.php"><button type="button" class="btn btn-success btn-sm">OK</button><br></a>';
                         } else {
                             echo '
                 <div class="alert alert-danger" role="alert">
